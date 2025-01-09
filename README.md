@@ -1,1 +1,8 @@
 # Capstone-Backend
+
+Members:
+Margaret Terechtchenko 101297977
+Berlean Gregori 101465969
+Tomer Edelman 101400506
+Ryan Tran 101460443
+Akeen Zhong 101462287
