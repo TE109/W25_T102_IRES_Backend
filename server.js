@@ -2,6 +2,9 @@ const CFG = require("./config/config");
 const app = require("./config/app");
 
 //require('dotenv').config();
+const connectToMongo = require('./config/db');
+
+connectToMongo();
 
 // Basic route for testing
 app.get('/', (req, res) => {

@@ -1,0 +1,25 @@
+# docker-compose up --build
+# docker-compose -p capstone-backend -f docker-compose.yml up -d --build
+
+version: '3.9'
+
+services:
+  mongo-ires:
+    image: mongo:latest
+    container_name: mongo-ires
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo/db-data:/data/db
+    networks:
+      - ires
+
+volumes:
+  mongo-db:
+    driver: local
+  mongo_data:
+
+networks:
+  ires:
+    driver: bridge
