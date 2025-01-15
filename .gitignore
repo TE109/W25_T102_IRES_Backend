@@ -1,6 +1,7 @@
 # Node.js dependencies
 node_modules/
-mongo/
+mongo/db-data/*
+!mongo/db-data/
 
 # Logs
 npm-debug.log*
