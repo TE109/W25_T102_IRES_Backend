@@ -1,7 +1,7 @@
 # Node.js dependencies
 node_modules/
 mongo/db-data/*
-!mongo/db-data/
+!mongo/db-data/.gitkeep
 
 # Logs
 npm-debug.log*
