@@ -40,6 +40,9 @@ coverage/
 # VS Code settings folder
 .vscode/
 
+# Enviroment Variable 
+*.env
+
 # Mac OS Finder folder settings
 .AppleDouble
 .LSOverride
