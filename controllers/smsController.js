@@ -6,12 +6,10 @@ const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TO
 
 // Send a message using Twillo API
 exports.createMessage = async (req, res) => { 
-
     // Body is the message to be sent
     // To is the Phone number to send it to 
     // Extracting message from the body 
-    const { body, to } = req.body; 
-    
+    const { body, to } = req.body;     
     try {
       const message = await client.messages.create({
         body: body,
