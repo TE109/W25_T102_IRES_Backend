@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Members:\r Margaret Terechtchenko 101297977\r Berlean Gregori 101465969\r Tomer Edelman 101400506\r Ryan Tran 101460443\r Akeen Zhong 101462287",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -18,5 +18,19 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.4",
     "twilio": "^5.4.2"
-  }
+  },
+  "runArgs": [
+    "--env-file",
+    ".env"
+  ],
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TE109/Capstone-Backend.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TE109/Capstone-Backend/issues"
+  },
+  "homepage": "https://github.com/TE109/Capstone-Backend#readme"
 }
