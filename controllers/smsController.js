@@ -10,9 +10,6 @@ exports.createMessage = async (req, res) => {
   // Body is the message to be sent
   // To is the Phone number to send it to 
   // Extracting message from the body 
-
-  // Body should look like Your custom verification code is: 
-  // customCode Should be the verification Code 
   const { body, to } = req.body;     
   try {
     const message = await client.messages.create({
@@ -37,15 +34,17 @@ exports.createMessage = async (req, res) => {
   }
 }
 
-// Function to verify the code provided by the user
+// Function to verify the code provided
 exports.verifyCode = async (req, res) => {
-  const { phoneNumber, accessCode } = req.body;
+  const {accessCode} = req.body;
   try {
+    // Trys to get the Record with the passed access Code 
     const accessRecord = await Access.findOne({ accessCode });
     res.status(200).json({
       status: "success",
       message: "Access code verified successfully.",
     });
+
   } catch (error) {
     console.error('Error verifying access code:', error.message);
     res.status(500).json({
