@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'); //Connect to mongoose
-const Access = require('.models/Access'); // Access to Access model
+const Access = require('../models/accessModel'); // Access to Access model
 const crypto = require('crypto'); // used for generating accessCode
 const { query } = require('express'); //query for retriving database 
 

@@ -1,10 +1,12 @@
 const express = require("express");
-const accessController = require("../controllers/smsController.js");
+const smsController = require("../controllers/smsController.js");
 
 const router = express.Router();
 
 router
   .route("/send-message")
-  .post(accessController.createMessage);
-
+  .post(smsController.createMessage);
+router
+  .route("/verify")
+  .get(smsController.verifyCode)
 module.exports = router;
