@@ -10,11 +10,11 @@ const visitor = new mongoose.Schema({
         type: String,
         required: [true, 'Reason of visit is required.']
       },
-    phonenumber: {
+    phoneNumber: {
         type: String,
         required: [true, 'Phone number is required.']
     },
-    appoiment_time: {
+    appointment_time: {
         type: Date,
         
     }

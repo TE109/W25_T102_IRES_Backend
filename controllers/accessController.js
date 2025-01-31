@@ -54,6 +54,33 @@ async function createAccess(req, res) {
 
 module.exports = createAccess;
 
+//Get AccessCode by accessID
+//Select only accessID from access record to provide authentication for entry
+async function getAccessCode(req, res) {
+    try{
+        const {accessId} = req.params;
+        const accessCode = await Access.findById(accessId).select('accessCode');
+
+        if(!access) {
+            return res.status(404).json({
+                message: 'No access record found under the ID provided'
+            });
+        } 
+
+        res.status(200).json({
+            message: 'Access code retreived successfully.',
+            accessCode
+        });
+    } catch(error) {
+        console.error('Error retrieving access code: ', error.message);
+        res.status(500).json({
+            message: 'Failed to retrieved access code.',
+            error: error.message
+        });
+
+    }
+}
+module.exports = getAccessCode;
 
 // Access the database to get the record by accessId
 
