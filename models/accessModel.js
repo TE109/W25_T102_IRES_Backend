@@ -36,5 +36,5 @@ const accessSchema = new mongoose.Schema({
 });
 
 
-
-module.exports = Access;
+const access = mongoose.model("Access", accessSchema);
+module.exports = access;

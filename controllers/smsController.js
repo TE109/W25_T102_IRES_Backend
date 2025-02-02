@@ -1,6 +1,8 @@
 const twilio = require("twilio");
 const dotenv = require('dotenv').config(); // Required to access env Variables
-const Access = require('./accessController'); // Import the Access Controller 
+//const Access = require('./accessController'); 
+const mongoose = require('mongoose');
+const Access = require('../models/accessModel');// Import the Access Model 
 
 // Load environment variables
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
@@ -40,11 +42,20 @@ exports.verifyCode = async (req, res) => {
   try {
     // Trys to get the Record with the passed access Code 
     const accessRecord = await Access.findOne({ accessCode });
-    res.status(200).json({
-      status: "success",
-      message: "Access code verified successfully.",
-    });
-
+    
+    // If the Route Exsists Return Successfully 
+    if(accessRecord != null){
+      res.status(200).json({
+        status: "success",
+        message: "Access code verified successfully.",
+      });
+    // If the Route Dosnt Exsist Return an Ivalide error code 
+    } else {
+      res.status(404).json({
+        status: "error",
+        message: "Invalid Access Code.",
+      });
+    }
   } catch (error) {
     console.error('Error verifying access code:', error.message);
     res.status(500).json({
