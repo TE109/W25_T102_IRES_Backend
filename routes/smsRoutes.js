@@ -8,5 +8,5 @@ router
   .post(smsController.createMessage);
 router
   .route("/verify")
-  .get(smsController.verifyCode)
+  .get(smsController.verifyCode);
 module.exports = router;

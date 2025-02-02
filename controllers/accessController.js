@@ -10,7 +10,7 @@ function generateAccessCode() {
 
 //generate access record and save to database
 
-async function createAccess(req, res) {
+exports.createAccess = async(req, res) => {
     try {
         const { type } = req.body;
 
@@ -52,11 +52,9 @@ async function createAccess(req, res) {
     }
 }
 
-module.exports = createAccess;
-
 //Get AccessCode by accessID
 //Select only accessID from access record to provide authentication for entry
-async function getAccessCode(req, res) {
+exports.getAccessCode = async (req, res) => {
     try{
         const {accessId} = req.params;
         const accessCode = await Access.findById(accessId).select('accessCode');
@@ -80,11 +78,9 @@ async function getAccessCode(req, res) {
 
     }
 }
-module.exports = getAccessCode;
-
 // Access the database to get the record by accessId
 
-async function getAccessRecord(req, res){
+exports.getAccessRecord = async (req, res) => {
     try{
         //Require accessId as parameter to find record
         const { accessId } = req.params;
@@ -111,11 +107,11 @@ async function getAccessRecord(req, res){
     }
 
 }
-module.exports = getAccessRecord;
+
 
 //update access records by accessId
 
-async function updateAccessRecord(req, res) {
+exports.updateAccessRecord = async (req, res) => {
     try{
         //Require parameter accessId to find and update
         const { accessId } = req.params;
@@ -166,10 +162,8 @@ async function updateAccessRecord(req, res) {
     
 }
 
-module.exports = updateAccessRecord;
-
 //function to delete access record by accessId
-async function  deleteAccessRecord(req, res){
+exports.deleteAccessRecord = async (req, res) =>{
     try{
         const { accessId } = req.params;
 
@@ -196,11 +190,9 @@ async function  deleteAccessRecord(req, res){
     }
 }
 
-module.exports = deleteAccessRecord;
-
 //display all the access entry records
 
-async function displayAllAccessRecords(req, res){
+exports.displayAllAccessRecords = async(req, res) => {
     try{
         //Attempt to fetch all records from the database
         const accessRecords = await Access.find();
@@ -220,5 +212,4 @@ async function displayAllAccessRecords(req, res){
     }
 }
 
-module.exports = displayAllAccessRecords;
     
