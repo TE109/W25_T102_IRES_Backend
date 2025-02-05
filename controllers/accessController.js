@@ -57,9 +57,9 @@ exports.createAccess = async(req, res) => {
 exports.getAccessCode = async (req, res) => {
     try{
         const {accessId} = req.params;
-        const accessCode = await Access.findById(accessId).select('accessCode');
+        const accessCodeRecord = await Access.findById(accessId).select('accessCode');
 
-        if(!access) {
+        if(!accessCodeRecord) {
             return res.status(404).json({
                 message: 'No access record found under the ID provided'
             });
@@ -67,7 +67,7 @@ exports.getAccessCode = async (req, res) => {
 
         res.status(200).json({
             message: 'Access code retreived successfully.',
-            accessCode
+            accessCode: accessCodeRecord.accessCode,
         });
     } catch(error) {
         console.error('Error retrieving access code: ', error.message);
@@ -167,7 +167,7 @@ exports.deleteAccessRecord = async (req, res) =>{
     try{
         const { accessId } = req.params;
 
-        const deletedRecord = await Access.finByIdAndDelete(accessId);
+        const deletedRecord = await Access.findByIdAndDelete(accessId);
 
         if (!deletedRecord){
             return res.status(404).json({

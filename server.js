@@ -1,5 +1,15 @@
 const CFG = require("./config/config");
 const app = require("./config/app");
+const accessRoutes = require('./routes/accessRoutes');
+const adminRoutes = require("./routes/adminRoutes");
+const express = require("express");
+
+app.use(express.json());
+
+//accessRoutes
+app.use("/api/access", accessRoutes);
+//adminRoutes
+app.use("/api/admin", adminRoutes);
 
 //require('dotenv').config();
 const connectToMongo = require('./config/db');

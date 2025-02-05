@@ -1,4 +1,5 @@
 const Admin = require('../models/adminModel');
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const CFG = require('../config/config');
@@ -107,47 +108,54 @@ exports.updateAdmin = async (req, res) => {
 
 exports.updatePassword = async (req, res) => {
   try {
-      const { accessId } = req.params;
-      const { currentPassword, newPassword } = req.body;
+    const { id } = req.params;
+    const { currentPassword, newPassword } = req.body;
 
-      if (!currentPassword || !newPassword) {
-          return res.status(400).json({
-              message: 'Current password and new password are required.'
-          });
-      }
+    
 
-      // Load the admin data
-      const admin = await Admin.findById(accessId);
-
-      if (!admin) {
-          return res.status(404).json({
-              message: 'Admin account not found.'
-          });
-      }
-
-      // Validate current password by comparing the input with the recorded password
-      const isPasswordValid = await bcrypt.compare(currentPassword, admin.password);
-      if (!isPasswordValid) {
-          return res.status(400).json({
-              message: 'The password you entered does not match the current password.'
-          });
-      }
-
-      // Hash the new password
-      const hashedPassword = await bcrypt.hash(newPassword, 8);
-      admin.password = hashedPassword;
-
-      // Save the updated admin record
-      await admin.save();
-
-      res.status(200).json({
-          message: 'Password has been changed successfully.'
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        message: 'Invalid Admin ID format.',
       });
+    }
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
+        message: 'Current password and new password are required.',
+      });
+    }
+
+    const admin = await Admin.findById(id);
+
+    // Debug: Log the retrieved admin
+    console.log('Retrieved admin:', admin);
+
+    if (!admin) {
+      return res.status(404).json({
+        message: 'Admin account not found. Verify the accessId.',
+        accessId,
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(currentPassword, admin.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({
+        message: 'The password you entered does not match the current password.',
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 8);
+    admin.password = hashedPassword;
+    await admin.save();
+
+    res.status(200).json({
+      message: 'Password has been changed successfully.',
+    });
   } catch (error) {
-      console.error('Error updating your password:', error.message);
-      res.status(500).json({
-          message: 'Failed to update password.',
-          error: error.message
-      });
+    console.error('Error updating your password:', error.stack);
+    res.status(500).json({
+      message: 'Failed to update password.',
+      error: error.message,
+    });
   }
 };

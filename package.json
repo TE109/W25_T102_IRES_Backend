@@ -23,7 +23,6 @@
     "--env-file",
     ".env"
   ],
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TE109/Capstone-Backend.git"
