@@ -5,32 +5,32 @@ const router = express.Router();
 
 // Create Access has been tested and works I havent tested the rest but they should be fine 
 //I tested and fixed some error- Ryan
-//http://localhost:3000/api/access/create-access
+//http://localhost:3000/api/v1/access/create-access
 router
   .route("/create-access")
   .post(accessController.createAccess);
 
-//http://localhost:3000/api/access/get-access-code/:accessId
+//http://localhost:3000/api/v1/access/all-records
 router
   .route("/get-access-code/:accessId")
   .get(accessController.getAccessCode);
 
-//http://localhost:3000/api/access/get-access-record/:accessId
+//http://localhost:3000/api/v1/access/get-access-record/:accessId
 router
   .route("/get-access-record/:accessId")
   .get(accessController.getAccessRecord);
 
-//http://localhost:3000/api/access/update-access-record/:accessId
+//http://localhost:3000/api/v1/access/update-access-record/:accessId
 router
   .route("/update-access-record/:accessId")
   .put(accessController.updateAccessRecord);
 
-  //http://localhost:3000/api/access/delete-access-record/:accessId
+  //http://localhost:3000/api/v1/access/delete-access-record/:accessId
 router
   .route("/delete-access-record/:accessId")
   .delete(accessController.deleteAccessRecord);
 
-  //http://localhost:3000/api/access/all-records
+  //http://localhost:3000/api/v1/access/all-records
 router
   .route("/all-records")
   .get(accessController.displayAllAccessRecords);
