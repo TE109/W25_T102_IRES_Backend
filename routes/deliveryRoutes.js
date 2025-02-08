@@ -1,20 +1,20 @@
 const express = require('express');
-const visitorController = require('../controllers/vistorController');
+const deliveryController = require('../controllers/deliveryController');
 const auth = require('../config/auth');
 
 const router = express.Router();
 
-////http://localhost:3000/api/v1/visitor/
+////http://localhost:3000/api/v1/delivery/
 router
     .route('/')
-    .get(auth, companyController.getAllCompanies)
-    .post(auth, companyController.createNewCompany)
-    .delete(auth, companyController.deleteCompany);
+    .get(auth, deliveryController.getAllDeliveries)
+    .post(auth, deliveryController.createDelivery)
+    .delete(auth, deliveryController.deleteDelivery);
 
-////http://localhost:3000/api/v1/visitor/:eid
+////http://localhost:3000/api/v1/delivery/:eid
 router
     .route('/:eid')
-    .get(auth, companyController.getCompany)
-    .put(auth, companyController.updateCompany);
+    .get(auth, deliveryController.getDeliveryById)
+    .put(auth, deliveryController.updateDelivery);
            
 module.exports = router;

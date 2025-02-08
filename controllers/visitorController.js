@@ -1,4 +1,4 @@
-const Visitor = require('../models/vistiorModel');
+const Visitor = require('../models/visitorModel');
 
 //new visitor record after the access record categorized by "visitor"
 

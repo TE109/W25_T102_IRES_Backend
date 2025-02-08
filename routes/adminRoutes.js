@@ -1,5 +1,6 @@
 const express = require('express');
 const adminController = require('../controllers/adminController');
+const auth = require('../config/auth');
 
 const router = express.Router();
 //Tested
@@ -15,16 +16,16 @@ router
 //http://localhost:3000/api/v1/admin/display
 router
     .route('/display')
-    .get(adminController.displayAllAdmin);
+    .get(auth, adminController.displayAllAdmin);
 
 
 //http://localhost:3000/api/v1/admin/update/:id
 router
     .route('/update/:id')
-    .put(adminController.updateAdmin);
+    .put(auth, adminController.updateAdmin);
 
 //http://localhost:3000/api/v1/admin/updatePassword/:id
 router
     .route('/updatePassword/:id')
-    .put(adminController.updatePassword);
+    .put(auth, adminController.updatePassword);
 module.exports = router;
