@@ -9,12 +9,13 @@ router
     .route('/')
     .get(auth, visitorController.displayAllVisitors)
     .post(auth, visitorController.createVisitorRecord)
-    .delete(auth, visitorController.deleteVisitor);
+    
 
 ////http://localhost:3000/api/v1/visitor/:eid
 router
     .route('/:eid')
     .get(auth, visitorController.getVisitorById)
-    .put(auth, visitorController.updateVisitor);
+    .put(auth, visitorController.updateVisitor)
+    .delete(auth, visitorController.deleteVisitor);
            
 module.exports = router;

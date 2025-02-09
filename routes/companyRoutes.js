@@ -9,12 +9,13 @@ router
     .route('/')
     .get(auth, companyController.getAllCompanies)
     .post(auth, companyController.createNewCompany)
-    .delete(auth, companyController.deleteCompany);
+    
 
 ////http://localhost:3000/api/v1/company/:eid
 router
     .route('/:eid')
     .get(auth, companyController.getCompany)
-    .put(auth, companyController.updateCompany);
+    .put(auth, companyController.updateCompany)
+    .delete(auth, companyController.deleteCompany);
            
 module.exports = router;

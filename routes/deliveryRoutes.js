@@ -9,12 +9,13 @@ router
     .route('/')
     .get(auth, deliveryController.getAllDeliveries)
     .post(auth, deliveryController.createDelivery)
-    .delete(auth, deliveryController.deleteDelivery);
+    
 
 ////http://localhost:3000/api/v1/delivery/:eid
 router
     .route('/:eid')
     .get(auth, deliveryController.getDeliveryById)
-    .put(auth, deliveryController.updateDelivery);
+    .put(auth, deliveryController.updateDelivery)
+    .delete(auth, deliveryController.deleteDelivery);
            
 module.exports = router;
