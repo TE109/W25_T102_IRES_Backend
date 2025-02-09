@@ -57,8 +57,8 @@ exports.getAllDeliveries = async (req, res) => {
 // Get a delivery record by ID
 exports.getDeliveryById = async (req, res) => {
     try {
-        const { id } = req.params;
-        const delivery = await Delivery.findById(id);
+        const { eid } = req.params;
+        const delivery = await Delivery.findById(eid);
 
         if (!delivery) {
             return res.status(404).json({
@@ -82,10 +82,10 @@ exports.getDeliveryById = async (req, res) => {
 // Update a delivery record
 exports.updateDelivery = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { eid } = req.params;
         const updateData = req.body;
 
-        const updatedDelivery = await Delivery.findByIdAndUpdate(id, updateData, {
+        const updatedDelivery = await Delivery.findByIdAndUpdate(eid, updateData, {
             new: true,
             runValidators: true,
         });
@@ -112,8 +112,8 @@ exports.updateDelivery = async (req, res) => {
 // Delete a delivery record
 exports.deleteDelivery = async (req, res) => {
     try {
-        const { id } = req.params;
-        const deletedDelivery = await Delivery.findByIdAndDelete(id);
+        const { eid } = req.params;
+        const deletedDelivery = await Delivery.findByIdAndDelete(eid);
 
         if (!deletedDelivery) {
             return res.status(404).json({

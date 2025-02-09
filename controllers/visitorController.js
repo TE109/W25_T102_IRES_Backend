@@ -63,20 +63,20 @@ try{
     }
 };
 
-//Get visitor by ID
-exports.getVisitorById = async(req, res) => {
+// Get visitor by ID
+exports.getVisitorById = async (req, res) => {
     try {
-        const { id } = req.params;
-        const visitor = await Visitor.findById(id);
-
-        if(!visitor) {
+        const { eid } = req.params;
+        const visitor = await Visitor.findById(eid);
+        console.log('Received ID:', eid);
+        if (!visitor) {
             return res.status(404).json({
-                message: 'Visitor not found'
+                message: 'Visitor not found',
             });
         }
 
         res.status(200).json({
-            message: 'Visitor retried successfully.',
+            message: 'Visitor retrieved successfully.',
             visitor,
         });
     } catch (error) {
@@ -88,14 +88,13 @@ exports.getVisitorById = async(req, res) => {
     }
 };
 
-//Update vistor records by ID
+// Update visitor records by ID
 exports.updateVisitor = async (req, res) => {
     try {
-
-        const { id } = req.params;
+        const { eid } = req.params;
         const updateData = req.body;
 
-        const updateVisitor = await Visitor.findByIdAndDelete(id, updateData, {
+        const updatedVisitor = await Visitor.findByIdAndUpdate(eid, updateData, {
             new: true,
             runValidators: true,
         });
@@ -110,25 +109,22 @@ exports.updateVisitor = async (req, res) => {
             message: 'Visitor updated successfully.',
             visitor: updatedVisitor,
         });
-
-
     } catch (error) {
-
         console.error('Error updating visitor: ', error.message);
         res.status(500).json({
             message: 'Failed to update visitor.',
             error: error.message,
         });
-
     }
 };
+
 
 //Delete the visitor record
 exports.deleteVisitor = async (req, res) => {
     try {
 
-        const { id } = req.params;
-        const deletedVisitor = await Visitor.findByIdAndDelete(id);
+        const { eid } = req.params;
+        const deletedVisitor = await Visitor.findByIdAndDelete(eid);
 
         if(!deletedVisitor) {
             return res.status(404).json({
