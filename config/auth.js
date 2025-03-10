@@ -4,17 +4,33 @@ const CFG = require('./config');
 const auth = (req, res, next) => {
     try {
         const header = req.header('Authorization');
-        if (!header)
-            throw Error('No authorization provided.');
 
-        const token = header.replace('Bearer ', '');
-        if (!token) 
-            throw Error('Authorization is empty.');
+        if (!header) {
+            return res.status(401).json({ message: "No authorization header provided. Access denied." });
+        }
 
-        req.user_id = jwt.verify(token, CFG.SECRET);
-        next();
+        if (!header.startsWith('Bearer ')) {
+            return res.status(401).json({ message: "Invalid authorization format. Expected 'Bearer <token>'." });
+        }
+
+        const token = header.split(' ')[1]; 
+
+        if (!token) {
+            return res.status(401).json({ message: "Authorization token is missing. Access denied." });
+        }
+
+ 
+        jwt.verify(token, CFG.SECRET, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: "Invalid or expired token. Access denied." });
+            }
+
+            req.user_id = decoded; 
+            next(); 
+        });
+
     } catch (error) {
-        return res.status(401).json({ message: `${error.message} Access denied.` });
+        return res.status(401).json({ message: `Authentication error: ${error.message}. Access denied.` });
     }
 };
 
