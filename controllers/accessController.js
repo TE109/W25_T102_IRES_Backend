@@ -57,7 +57,7 @@ exports.createAccess = async(req, res) => {
 exports.getAccessCode = async (req, res) => {
     try{
         const {accessId} = req.params;
-        const accessCodeRecord = await Access.findById(accessId).select('accessCode');
+        const accessCodeRecord = await Access.findOne({accessId: accessId}).select('accessCode');
 
         if(!accessCodeRecord) {
             return res.status(404).json({
@@ -65,10 +65,7 @@ exports.getAccessCode = async (req, res) => {
             });
         } 
 
-        res.status(200).json({
-            message: 'Access code retreived successfully.',
-            accessCode: accessCodeRecord.accessCode,
-        });
+       
     } catch(error) {
         console.error('Error retrieving access code: ', error.message);
         res.status(500).json({
@@ -197,7 +194,7 @@ exports.displayAllAccessRecords = async(req, res) => {
         //Attempt to fetch all records from the database
         const accessRecords = await Access.find();
         res.status(200).json({
-            message: 'Access reords retrieved sucessfully.',
+            message: 'Access records retrieved sucessfully.',
             accessRecords
         });
         

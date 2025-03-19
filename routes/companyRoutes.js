@@ -17,5 +17,11 @@ router
     .get(auth, companyController.getCompany)
     .put(auth, companyController.updateCompany)
     .delete(auth, companyController.deleteCompany);
+
+
+////http://localhost:3000/api/v1/company/getcompanyId/companyId
+router
+    .route('/getcompanyId/:companyId')
+    .get(auth, companyController.getCompanyById)
            
 module.exports = router;
