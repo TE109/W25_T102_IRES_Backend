@@ -28,7 +28,8 @@ exports.createNewCompany = async(req,res) =>{
     res
     .status(201)
     .json({
-      message: `Company created succesfully. Company Id ${newCompany._id}`
+      message: `Company created succesfully. Company Id ${newCompany._id}`,
+      _id: newCompany._id
     });
 
   } catch (err){
