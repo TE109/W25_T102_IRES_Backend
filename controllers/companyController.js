@@ -84,13 +84,13 @@ exports.updateCompany = async(req, res) =>{
 //Deleting an Company using delete
 exports.deleteCompany = async(req,res) =>{
   try {
-    const id = req.query.eid;
+    const id = req.params.eid;
     await Company.findByIdAndDelete(id);
 
     res
     .status(200)
     .json({              
-      message: `Company deleted successfully ${req.query.eid} `
+      message: `Company deleted successfully ${req.params.eid} `
     });
   } catch(err) {
         res
