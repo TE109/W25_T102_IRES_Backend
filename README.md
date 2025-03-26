@@ -43,9 +43,8 @@ git clone https://github.com/TE109/Capstone-Backend.git
 cd capstone-backend
 
 ### Running the Application
-Run the following docker command without quotes: 
-"docker-compose -p capstone-backend -f docker-compose.yml up -d --build"
-Proceed with:
-npm start
+Run the following docker command without quotes: <br/>
+"docker-compose -p capstone-backend -f docker-compose.yml up -d --build" <br/>
+Proceed with: npm start <br/>
 
 Following npm start, run the IRES frontend.
