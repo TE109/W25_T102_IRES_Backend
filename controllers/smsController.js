@@ -1,6 +1,5 @@
 const twilio = require("twilio");
 const dotenv = require('dotenv').config(); // Required to access env Variables
-//const Access = require('./accessController'); 
 const mongoose = require('mongoose');
 const Access = require('../models/accessModel');// Import the Access Model 
 
@@ -49,7 +48,8 @@ exports.verifyCode = async (req, res) => {
         status: "success",
         message: "Access code verified successfully.",
       });
-    // If the Route Dosnt Exsist Return an Ivalide error code 
+      
+    // If the Route Dosnt Exsist Return an Invalide error code 
     } else {
       res.status(404).json({
         status: "error",
