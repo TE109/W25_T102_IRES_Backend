@@ -191,7 +191,6 @@ exports.deleteAccessRecord = async (req, res) =>{
 }
 
 //display all the access entry records
-
 exports.displayAllAccessRecords = async(req, res) => {
     try{
         //Attempt to fetch all records from the database
