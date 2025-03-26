@@ -7,12 +7,12 @@ const router = express.Router();
 router
     .route('/')
     .get(auth, companyController.getAllCompanies)
-    .post(auth, companyController.createNewCompany)
-    .delete(auth, companyController.deleteCompany);
+    .post(auth, companyController.createNewCompany);
 
 router
     .route('/:eid')
     .get(auth, companyController.getCompany)
-    .put(auth, companyController.updateCompany);
+    .put(auth, companyController.updateCompany)
+    .delete(auth, companyController.deleteCompany);
            
 module.exports = router;

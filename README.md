@@ -26,7 +26,7 @@ Only verified phone numbers can receive messages.
 
 ### Prerequisites
 
-### Install Node.js and npm.
+### Install Node.js, npm and express.
 npm install
 
 ## Set up your .env file with the required Twilio credentials:

@@ -60,6 +60,7 @@ exports.loginAdmin = async(req,res) =>{
   }
 };
 
+<<<<<<< HEAD
 //Display all admin users for management
 
 exports.displayAllAdmin = async (req, res) => {
@@ -149,5 +150,58 @@ exports.updatePassword = async (req, res) => {
           message: 'Failed to update password.',
           error: error.message
       });
+=======
+exports.updatePassword = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { currentPassword, newPassword } = req.body;
+
+    
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        message: 'Invalid Admin ID format.',
+      });
+    }
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
+        message: 'Current password and new password are required.',
+      });
+    }
+
+    const admin = await Admin.findById(id);
+
+    // Debug: Log the retrieved admin
+    console.log('Retrieved admin:', admin);
+
+    if (!admin) {
+      return res.status(404).json({
+        message: 'Admin account not found. Verify the accessId.',
+        accessId,
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(currentPassword, admin.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({
+        message: 'The password you entered does not match the current password.',
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 8);
+    admin.password = hashedPassword;
+    await admin.save();
+
+    res.status(200).json({
+      message: 'Password has been changed successfully.',
+    });
+  } catch (error) {
+    console.error('Error updating your password:', error.stack);
+    res.status(500).json({
+      message: 'Failed to update password.',
+      error: error.message,
+    });
+>>>>>>> f0de4cba65f3b4d254d102cf7814b1152f7e0139
   }
 };
