@@ -60,7 +60,7 @@ exports.loginAdmin = async(req,res) =>{
   }
 };
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //Display all admin users for management
 
 exports.displayAllAdmin = async (req, res) => {
@@ -150,7 +150,7 @@ exports.updatePassword = async (req, res) => {
           message: 'Failed to update password.',
           error: error.message
       });
-=======
+//=======
 exports.updatePassword = async (req, res) => {
   try {
     const { id } = req.params;
@@ -202,6 +202,9 @@ exports.updatePassword = async (req, res) => {
       message: 'Failed to update password.',
       error: error.message,
     });
->>>>>>> f0de4cba65f3b4d254d102cf7814b1152f7e0139
+//>>>>>>> f0de4cba65f3b4d254d102cf7814b1152f7e0139
   }
-};
+}
+}
+}
+;

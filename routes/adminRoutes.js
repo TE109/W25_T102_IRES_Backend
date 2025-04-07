@@ -12,7 +12,7 @@ router
     .post(adminController.loginAdmin);
 
     
-router
+/* router
     .route('/updatePassword/:id')
-    .put(auth, adminController.updatePassword);
+    .put(auth, adminController.updatePassword); */
 module.exports = router;
