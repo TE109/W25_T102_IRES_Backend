@@ -6,7 +6,7 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(auth, companyController.getAllCompanies)
+    .get( companyController.getAllCompanies)
     .post(auth, companyController.createNewCompany);
 
 router
