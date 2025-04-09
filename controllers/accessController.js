@@ -196,7 +196,7 @@ exports.displayAllAccessRecords = async(req, res) => {
         //Attempt to fetch all records from the database
         const accessRecords = await Access.find();
         res.status(200).json({
-            message: 'Access reords retrieved sucessfully.',
+            message: 'Access records retrieved sucessfully.',
             accessRecords
         });
         
