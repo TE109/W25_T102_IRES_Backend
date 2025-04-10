@@ -4,11 +4,11 @@ const Visitor = require('../models/visitorModel');
 
 exports.createVisitorRecord = async (req, res) => {
     try{
-        const{ full_name, reason_for_visit, phoneNumber, appointment_time } = req.body;
+        const{ full_name, reason_for_visit, phoneNumber, appointment_time, companyName } = req.body;
 
-        if(!full_name || !reason_for_visit || !phoneNumber) {
+        if(!full_name || !reason_for_visit || !phoneNumber || !companyName) {
             return res.status(400).json({
-                message: "Fields are required: reason for visit, fullname and phone number are required",
+                message: "Fields are required: reason for visit, fullname and phone number, destination are required",
 
             });
         }
@@ -17,7 +17,8 @@ exports.createVisitorRecord = async (req, res) => {
             full_name,
             reason_for_visit,
             phoneNumber,
-            appointment_time
+            appointment_time,
+            companyName,
         });
 
         res.status(201).json({

@@ -17,6 +17,12 @@ const visitor = new mongoose.Schema({
     appointment_time: {
         type: Date,
         
+    },
+    //Add the business they are here for
+    companyName:{
+      type: String,
+      required: ['Please include your destination']
+
     }
 });
 

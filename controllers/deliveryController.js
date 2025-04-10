@@ -3,17 +3,18 @@ const Delivery = require('../models/deliveryModel')
 //new delivery record
 exports.createDelivery = async (req, res) => {
     try {
-        const { delivery_company, phonenumber } = req.body;
+        const { delivery_company, phonenumber, companyName } = req.body;
 
-        if (!delivery_company || !phonenumber) {
+        if (!delivery_company || !phonenumber || !companyName) {
             return res.status(400).json({
-                message: 'Delivery company and phone number are required.',
+                message: 'Delivery company, phone number and recipient are required.',
             });
         }
 
         const newDelivery = await Delivery.create({
             delivery_company,
             phonenumber,
+            companyName,
         });
 
         res.status(201).json({

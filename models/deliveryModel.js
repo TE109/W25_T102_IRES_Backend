@@ -10,6 +10,12 @@ const delivery = new mongoose.Schema({
     phonenumber: {
         type: String,
         required: [true, 'Phone number is required.']
+    },
+
+    //Add the business to deliver to
+    companyName: {
+      type: String,
+      required: [true, 'Please include your recipient located in the building.']
     }
 });
 
